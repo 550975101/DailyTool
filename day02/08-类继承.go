@@ -2,6 +2,9 @@ package main
 
 import "fmt"
 
+// Human 在go语言中 权限都是通过首字母大小写来控制的
+// 1、import==>如果包名不同 那么只有大写字母开头的才是public
+// 2、对于类里面的成员 方法==》只有大写开头的才能在其他包中使用
 type Human struct {
 	//成员属性
 	name   string
