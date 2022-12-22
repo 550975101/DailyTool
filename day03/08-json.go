@@ -6,9 +6,10 @@ import (
 )
 
 type Student struct {
-	Id     int
-	Name   string
-	Age    int
+	Id   int
+	Name string
+	Age  int
+	//小写字母开头的 在序列化中会忽略掉
 	gender string
 }
 
