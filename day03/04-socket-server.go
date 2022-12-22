@@ -41,7 +41,7 @@ func main() {
 	//服务器对客户端请求进行响应
 	//将数据转成大写 "hello" ==》 HELLO
 	//func ToLower(s string) string
-	upperData := strings.ToLower(string(buf))
+	upperData := strings.ToUpper(string(buf))
 
 	//Write(b []byte) (n int, err error)
 	cnt, err = conn.Write([]byte(upperData))
