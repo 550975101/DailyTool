@@ -184,7 +184,7 @@ func watch(user *User, conn net.Conn, isQuit <-chan bool, restTimer <-chan bool)
 			conn.Close()
 			return
 		case <-restTimer:
-			fmt.Println("连接%s 重置计数器!", user.name)
+			fmt.Printf("连接%s 重置计数器!", user.name)
 		}
 	}
 }
