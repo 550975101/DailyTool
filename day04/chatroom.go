@@ -170,14 +170,14 @@ func watch(user *User, conn net.Conn, isQuit <-chan bool, restTimer <-chan bool)
 	for {
 		select {
 		case <-isQuit:
-			logoutInfo := fmt.Sprintf("%s exit already!", user.name)
+			logoutInfo := fmt.Sprintf("%s exit already\n", user.name)
 			fmt.Println("删除当前用户")
 			delete(allUsers, user.id)
 			message <- logoutInfo
 			conn.Close()
 			return
 		case <-time.After(10 * time.Second):
-			logoutInfo := fmt.Sprintf("%s timeout already!", user.name)
+			logoutInfo := fmt.Sprintf("%s timeout already!\n", user.name)
 			fmt.Println("删除当前用户")
 			delete(allUsers, user.id)
 			message <- logoutInfo
