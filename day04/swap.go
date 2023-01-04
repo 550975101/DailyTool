@@ -2,18 +2,50 @@ package main
 
 import (
 	"bufio"
+	"errors"
 	"fmt"
 	"io"
 	"os"
 	"strconv"
 	"strings"
+	"time"
 )
+
+type Person struct {
+	Name string
+	Age  int
+}
+
+type Student struct {
+	Person
+	Job string
+}
+
+type A struct {
+	Name string
+	age  int
+}
+
+type B struct {
+	Name  string
+	Score float64
+}
+
+type C struct {
+	A
+	B
+}
 
 func swap(pa *int, pb *int) {
 	*pa, *pb = *pb, *pa
 }
 
 func main() {
+	student := Student{
+		Person: Person{},
+		Job:    "",
+	}
+	fmt.Println(student.Age)
 	a := 10
 	b := 20
 
@@ -101,5 +133,39 @@ func main() {
 			break
 		}
 		fmt.Println(string(line))
+	}
+
+	now := time.Now()
+	fmt.Println(now)
+
+	fmt.Println(now.Format("20060102 15:04:05"))
+
+	parse, err := time.Parse("20060102 15:04:05", "20221229 10:30:30")
+	if err != nil {
+		return
+	}
+	fmt.Println(parse.String())
+
+	defer func() {
+		err := recover()
+		if err != nil {
+			fmt.Println("err: ", err)
+		}
+	}()
+
+	strArr := [...]string{"1", "2", "3"}
+	fmt.Printf("%T", strArr)
+	for _, s := range strArr {
+		fmt.Println(s)
+	}
+}
+
+// 函数去读取配置文件init.conf
+// 如果文件名传入不正确 我们就返回一个自定义的错误
+func readConf(name string) (err error) {
+	if name == "config.ini" {
+		return nil
+	} else {
+		return errors.New("读取文件错误")
 	}
 }
